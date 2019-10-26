@@ -3,10 +3,10 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
-      ./boot.nix
-      ./network.nix
-      ./packages.nix
+      /etc/nixos/hardware-configuration.nix
+      /etc/nixos/boot.nix
+      /etc/nixos/network.nix
+      /etc/nixos/packages.nix
     ];
 
   i18n = {

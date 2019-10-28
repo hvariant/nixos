@@ -12,6 +12,11 @@
   i18n = {
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
+
+    inputMethod.enabled = "ibus";
+    inputMethod.ibus.engines = with pkgs.ibus-engines; [
+      libpinyin
+    ];
   };
 
   time.timeZone = "Australia/Sydney";

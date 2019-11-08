@@ -43,6 +43,9 @@
     layout = "us";
     xkbOptions = "ctrl:nocaps";
 
+    # enable touchpad
+    libinput.enable = true;
+
     desktopManager.default = "none";
     desktopManager.xterm.enable = false;
 

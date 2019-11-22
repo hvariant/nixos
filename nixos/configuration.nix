@@ -12,11 +12,6 @@
   i18n = {
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
-
-    inputMethod.enabled = "ibus";
-    inputMethod.ibus.engines = with pkgs.ibus-engines; [
-      libpinyin
-    ];
   };
 
   time.timeZone = "Australia/Sydney";
@@ -28,6 +23,10 @@
     autosuggestions.enable = true;
   };
 
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "${config.services.xserver.displayManager.session.script}";
+  networking.firewall.allowedTCPPorts = [ 3389 ];
+
   # https://www.reddit.com/r/NixOS/comments/atqlf0/how_to_get_mlocate_working_a_guide_for_the_future/
   services.locate = {
     enable = true;
@@ -35,31 +34,15 @@
     interval = "hourly";
   };
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  services.openssh.enable = true;
 
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbOptions = "ctrl:nocaps";
+  services.xserver.enable = true;
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "ctrl:nocaps";
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
-    # enable touchpad
-    libinput.enable = true;
-
-    desktopManager.default = "none";
-    desktopManager.xterm.enable = false;
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3lock
-        i3status
-      ];
-    };
-  };
-
-  users.users.spss = {
+  users.users.vagrant = {
     isNormalUser = true;
     extraGroups = [ "wheel" "mlocate" ];
     shell = "/run/current-system/sw/bin/zsh";

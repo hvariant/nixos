@@ -59,6 +59,8 @@
     };
   };
 
+  services.logind.lidSwitch = "ignore";
+
   users.users.spss = {
     isNormalUser = true;
     extraGroups = [ "wheel" "mlocate" ];

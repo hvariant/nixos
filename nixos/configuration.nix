@@ -48,6 +48,6 @@
     shell = "/run/current-system/sw/bin/zsh";
   };
 
-  system.stateVersion = "19.09";
+  system.stateVersion = "20.03";
 }
 

@@ -9,8 +9,9 @@
       /etc/nixos/packages.nix
     ];
 
+  console.keyMap = "us";
+
   i18n = {
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
 

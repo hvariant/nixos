@@ -9,8 +9,9 @@
       /etc/nixos/packages.nix
     ];
 
+  console.keyMap = "us";
+
   i18n = {
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
 
     inputMethod.enabled = "ibus";
@@ -46,7 +47,7 @@
     # enable touchpad
     libinput.enable = true;
 
-    desktopManager.default = "none";
+    displayManager.defaultSession = "none+i3";
     desktopManager.xterm.enable = false;
 
     windowManager.i3 = {

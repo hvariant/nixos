@@ -39,26 +39,26 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  services.xserver = {
+  programs.sway = {
     enable = true;
-    layout = "us";
-    xkbOptions = "ctrl:nocaps";
-
-    # enable touchpad
-    libinput.enable = true;
-
-    displayManager.defaultSession = "none+i3";
-    desktopManager.xterm.enable = false;
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3lock
-        i3status
-      ];
-    };
+    wrapperFeatures.gtk = true; # so that gtk works properly
+    extraPackages = with pkgs; [
+      swaylock
+      swayidle
+      wl-clipboard
+      mako # notification daemon
+      dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+      i3status
+      grim
+      libnotify
+    ];
   };
+
+  environment.loginShellInit = ''
+    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+      exec sway
+    fi
+  '';
 
   services.logind.lidSwitch = "ignore";
 
